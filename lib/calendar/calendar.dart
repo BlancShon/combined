@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'package:medicine/calendar/event.dart';
 import 'package:medicine/calendar/todo_storage.dart';
 

@@ -1,25 +1,27 @@
 # Medicine to do list
 
-1. Calendar
-    + 달력에서는 어떤 약을 언제 먹어야 되는지 설정 한 것을 한번에 확인 할 수 있다.
-    + 또한 언제부터 언제까지 격리기간을 지정하고 격리기간이 언제까지 유지되는지 확인 할 수 있다.
+## 1. Calendar
+    + On the calendar, you can see at once what medicine to take by date.
+    + The start and end dates of the quarantine period are recorded and markedon
+    the calendar to immediately know until when the quarantine period is maintained.
     
    
 
-2. New To Do List
-    + 날짜를 지정하여 바로 이벤트를 추가 할 수 있다.
-    + 저장된 이벤트는 달력에 바로 추가 된다.
+## 2. New To Do List
+    + You can set the year, month, and day to immediately add events to that date.
+    + The event is immediately added to the calendar.
 
 
-3. New Medicine
-    + 오늘 먹어야 할 약들을 한번에 확인 할 수 있다.
-    + 약을 먹었는지 안먹었는지 체크할 수 있다.
-    + 알람을 지정 할 수 있다.
-    + 약별로 사진과 설명을 추가해서 확인 할 수 있다.
+## 3. New Medicine
+    + You can check the medicines you need to take today at once.
+    + You can check whether you took medicine or not.
+    + You can set the alarm.
+    + You can check each medicine by adding pictures and explanations.
     
 
-4. Check todo list
-    + 저장해놓은 알람들을 검색 기능을 활용하여 한번에 찾아 볼 수있다.
-    + 체크기능을 사용하여 해야할일과 남은 일을 구분지을 수 있다.
+## 4. Check todo list
+    + You can use the search function to find the alarm you saved at once.
+    + You can use the check function to distinguish between
+    what you have to do and what you have done.
 
 

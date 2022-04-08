@@ -1,16 +1,25 @@
-# medicine
+# Medicine to do list
 
-A new Flutter project.
+1. Calendar
+    + 달력에서는 어떤 약을 언제 먹어야 되는지 설정 한 것을 한번에 확인 할 수 있다.
+    + 또한 언제부터 언제까지 격리기간을 지정하고 격리기간이 언제까지 유지되는지 확인 할 수 있다.
+    
+   
 
-## Getting Started
+2. New To Do List
+    + 날짜를 지정하여 바로 이벤트를 추가 할 수 있다.
+    + 저장된 이벤트는 달력에 바로 추가 된다.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+3. New Medicine
+    + 오늘 먹어야 할 약들을 한번에 확인 할 수 있다.
+    + 약을 먹었는지 안먹었는지 체크할 수 있다.
+    + 알람을 지정 할 수 있다.
+    + 약별로 사진과 설명을 추가해서 확인 할 수 있다.
+    
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+4. Check todo list
+    + 저장해놓은 알람들을 검색 기능을 활용하여 한번에 찾아 볼 수있다.
+    + 체크기능을 사용하여 해야할일과 남은 일을 구분지을 수 있다.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+

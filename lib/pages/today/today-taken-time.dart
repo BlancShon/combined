@@ -193,7 +193,6 @@ class DeleteDataButton extends StatelessWidget {
         notification.deleteMultipleAlarm(alarmIds);
         historyRepository.deleteAllHistory(keys);
         medicineRepository.deleteMedicine(medicineAlarm.key);
-        //Navigator.pop(context);
       },
       child: const Icon(CupertinoIcons.bin_xmark),
     );

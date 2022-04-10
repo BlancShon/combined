@@ -1,4 +1,4 @@
-# Medicine to do list
+# Medicine to do list's functions
 
 ## 1. Calendar
     + On the calendar, you can see at once what medicine to take by date.
@@ -25,3 +25,78 @@
     what you have to do and what you have done.
 
 
+# class Explanations
+
+## To learn the application and to show the main page of it.
+    + MyApp
+    + MyPage
+
+## To add, delete and update the medicine history.
+    + MedicineRepository
+    + MedicineHistoryRepository
+
+## To go to the main page of New schedule with UI.
+    + Homepage
+    + BeforeTile
+    + AfterTile
+    + DeleteDataButton
+    + MedicinePhoto
+    + TileActionButton
+
+## To come up with bottom sheet with adding alarm and medicine function.
+    + BottomSheetBody
+    + TimeSettingBottomSheet
+    + AddAlarmButton
+    + AddAlarmPage
+    + AlarmBox
+    + AddMedicinePage
+    + MedicineIconButton
+    + PickImageBottomSheet
+    + BasicPageBodyFormet
+
+## To use flutter hive adapter function
+    + HiveStorage
+    + HiveStorageBox
+    + Medicine
+    + MedicineAdapter
+    + MedicineHistory
+    + MedicineHistoryAdapter
+    + MedicineAlarm
+
+## To go to the main page of calendar.
+    + Claendar
+    + Event
+
+## To use the service portal function.
+    + SpUtils
+    + DateHistoryStorage
+    + MessageLookup
+    + S
+
+## To localize the app.
+    + AppLocalizationDelegate
+
+## To go to the main page of todolist.
+    + Mytodolist
+    + Todo
+    + TodosPage
+    + TodoHeader
+    + CreateTodo
+    + SearchAndFilterTodo
+    + ShowTodos
+    + TodoItem
+    + ActivieTodoCountState
+    + ActivieTodoCount
+
+## To use filter and search function.
+    + FilteredTodoState
+    + FilteredTodos
+    + TodoFilterState
+    + TodoFilter
+    + TodoListSate
+    + TodoList
+    + TodoSearchState
+    + TodoSearch
+
+## To limit action frequency. 
+    + Debounce

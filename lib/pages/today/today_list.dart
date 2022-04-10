@@ -104,8 +104,7 @@ class TodayPage extends StatelessWidget {
             ),
           );
 
-          if (todayTakeHistory.medicineid ==
-              -1 /*&& todayTakeHistory.alarmTime ==''*/) {
+          if (todayTakeHistory.medicineid == -1) {
             return BeforeTile(
               medicineAlarm: medicineAlarm,
             );

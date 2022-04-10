@@ -2,8 +2,8 @@
 
 ## 1. Calendar
     + On the calendar, you can see at once what medicine to take by date.
-    + The start and end dates of the quarantine period are recorded and markedon
-    the calendar to immediately know until when the quarantine period is maintained.
+    + The start and end dates of the quarantine period are recorded and marked on
+      the calendar to immediately know until when the quarantine period is maintained.
     
    
 
@@ -22,7 +22,7 @@
 ## 4. Check todo list
     + You can use the search function to find the alarm you saved at once.
     + You can use the check function to distinguish between
-    what you have to do and what you have done.
+      what you have to do and what you have done.
 
 
 # class Explanations

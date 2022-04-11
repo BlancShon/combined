@@ -52,7 +52,7 @@ class TodoHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'ToDo',
+          'Daily Survey',
           style: TextStyle(fontSize: 40.0),
         ),
         Text(

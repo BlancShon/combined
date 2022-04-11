@@ -7,7 +7,7 @@
     
    
 
-## 2. New To Do List
+## 2. Add Event
     + You can set the year, month, and day to immediately add events to that date.
     + The event is immediately added to the calendar.
 
@@ -19,8 +19,9 @@
     + You can check each medicine by adding pictures and explanations.
     
 
-## 4. Check todo list
+## 4. Daily Survey
     + You can use the search function to find the alarm you saved at once.
+    + You can write down today's report and transfer at web database.
     + You can use the check function to distinguish between
       what you have to do and what you have done.
 
@@ -31,9 +32,9 @@
     + MyApp
     + MyPage
 
-## To add, delete and update the medicine history.
+## To add, delete and update the medicine Log.
     + MedicineRepository
-    + MedicineHistoryRepository
+    + MedicineLogRepository
 
 ## To go to the main page of New schedule with UI.
     + Homepage
@@ -59,8 +60,8 @@
     + HiveStorageBox
     + Medicine
     + MedicineAdapter
-    + MedicineHistory
-    + MedicineHistoryAdapter
+    + MedicineLog
+    + MedicineLogAdapter
     + MedicineAlarm
 
 ## To go to the main page of calendar.
@@ -76,27 +77,27 @@
 ## To localize the app.
     + AppLocalizationDelegate
 
-## To go to the main page of todolist.
-    + Mytodolist
-    + Todo
-    + TodosPage
-    + TodoHeader
-    + CreateTodo
-    + SearchAndFilterTodo
-    + ShowTodos
-    + TodoItem
-    + ActivieTodoCountState
-    + ActivieTodoCount
+## To go to the main page of Daily Survey.
+    + MySurveylist
+    + Survey
+    + SurveysPage
+    + SurveyHeader
+    + CreateSurvey
+    + SearchAndFilterSurvey
+    + ShowSurveys
+    + SurveyItem
+    + ActivieSurveyCountState
+    + ActivieSurveyCount
 
 ## To use filter and search function.
-    + FilteredTodoState
-    + FilteredTodos
-    + TodoFilterState
-    + TodoFilter
-    + TodoListSate
-    + TodoList
-    + TodoSearchState
-    + TodoSearch
+    + FilteredSurveyState
+    + FilteredSurveys
+    + SurveyFilterState
+    + SurveyFilter
+    + SurveyListSate
+    + SurveyList
+    + SurveySearchState
+    + SurveySearch
 
 ## To limit action frequency. 
     + Debounce

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medicine/pages/mainPage.dart';
 import 'package:medicine/repositories/hive.dart';
-import 'package:medicine/repositories/medicine_history_repository.dart';
+import 'package:medicine/repositories/medicine_log_repository.dart';
 import 'package:medicine/repositories/medicine_repository.dart';
 import 'package:medicine/services/notification_service.dart';
 import 'package:medicine/calendar/calendar.dart';
@@ -17,7 +17,7 @@ import 'package:medicine/mytodolist/mytodolist.dart';
 final notification = NotificationService();
 final hive = HiveStorage();
 final medicineRepository = MedicineRepository();
-final historyRepository = MedicineHistoryRepository();
+final LogRepository = MedicineLogRepository();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -114,7 +114,7 @@ class _MyPageState extends State<MyPage> {
                 color: Colors.grey[850],
               ),
               label: Text(
-                'New To Do List',
+                'Add Event',
                 style: TextStyle(
                   fontSize: 25,
                   color: Colors.grey[850],
@@ -164,7 +164,7 @@ class _MyPageState extends State<MyPage> {
                 color: Colors.grey[850],
               ),
               label: Text(
-                'Check todo list',
+                'Daily Survey',
                 style: TextStyle(
                   fontSize: 25,
                   color: Colors.grey[850],

@@ -48,7 +48,7 @@ class Mytodolist extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Todo Provider',
+        title: 'Daily Survey',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,

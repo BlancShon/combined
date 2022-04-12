@@ -16,6 +16,8 @@ class _CalendarState extends State<Calendar> {
   CalendarFormat format = CalendarFormat.month;
   DateTime selectedDay = DateTime.now();
   DateTime focusedDay = DateTime.now();
+  DateTime addDateTime = DateTime.now();
+
   //recordList: All todolist enents
   List<Map<String, dynamic>> recordList = List.empty(growable: true);
   //showList: 今天或给定一个日期的事件
@@ -258,7 +260,31 @@ class _CalendarState extends State<Calendar> {
                 }
               },
             ),
-          )
+          ),
+
+          Center(
+            child: ElevatedButton.icon(
+              onPressed: () {
+                _showCupertinoDatePicker();
+              },
+              icon: Icon(
+                Icons.add_alert_rounded,
+                size: 20,
+                color: Colors.grey[850],
+              ),
+              label: Text(
+                'Add Event',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.grey[850],
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.blue[400],
+                  onSurface: Colors.pink,
+                  minimumSize: Size(150, 50)),
+            ),
+          ),
         ],
       ),
     );
@@ -370,5 +396,79 @@ class _CalendarState extends State<Calendar> {
     //刷新数据
     recordList = DateHistoryStorage.getHistoryList();
     showList = _getListForDay(selectedDay);
+  }
+
+  void _showCupertinoDatePicker() {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(fontSize: 13),
+                    )),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Future.delayed(Duration(milliseconds: 200), () {
+                        _showInput();
+                      });
+                    },
+                    child: Text(
+                      'Confirm',
+                      style: TextStyle(fontSize: 13),
+                    )),
+              ],
+            ),
+            Container(
+              height: MediaQuery.of(context).copyWith().size.height / 3,
+              child: CupertinoDatePicker(
+                  mode: CupertinoDatePickerMode.date,
+                  maximumYear: DateTime.now().year + 60,
+                  minimumYear: DateTime.now().year - 60,
+                  onDateTimeChanged: (dateTime) {
+                    print("${dateTime.year}-${dateTime.month}-${dateTime.day}");
+                    addDateTime = dateTime;
+                  }),
+            ),
+          ]);
+        });
+  }
+
+  void _showInput() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Add Event"),
+        content: TextFormField(
+          controller: editingController,
+        ),
+        actions: [
+          TextButton(
+            child: Text("Cancel"),
+            onPressed: () => Navigator.pop(context),
+          ),
+          TextButton(
+            child: Text("Ok"),
+            onPressed: () {
+              DateHistoryStorage.putHistoryListItem(
+                  editingController.text, addDateTime);
+
+              Navigator.pop(context);
+              editingController.clear();
+              setState(() {});
+              return;
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

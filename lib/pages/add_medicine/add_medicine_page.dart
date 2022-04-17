@@ -35,43 +35,52 @@ class _AddMedicinePageState extends State<AddMedicinePage> {
         backgroundColor: Colors.blueAccent,
         leading: CloseButton(),
       ),
-      body: SingleChildScrollView(
-        child: BasicPageBodyFormet(
-          children: [
-            Text("Which medicine is it?",
-                style: Theme.of(context).textTheme.headline4),
-            SizedBox(height: 40),
-            Center(
-              child: MedicineIconButton(
-                changeImageFile: (File? value) {
-                  _medicineImage = value;
-                },
+      body: Builder(
+        builder: (context) {
+          return GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
+            child: SingleChildScrollView(
+              child: BasicPageBodyFormet(
+                children: [
+                  Text("Which medicine is it?",
+                      style: Theme.of(context).textTheme.headline4),
+                  SizedBox(height: 40),
+                  Center(
+                    child: MedicineIconButton(
+                      changeImageFile: (File? value) {
+                        _medicineImage = value;
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: 60,
+                  ),
+                  Text(
+                    'Medicine name',
+                    style: Theme.of(context).textTheme.subtitle1,
+                  ),
+                  TextFormField(
+                    controller: _nameController,
+                    maxLength: 20,
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.done,
+                    style: Theme.of(context).textTheme.bodyText1,
+                    decoration: InputDecoration(
+                      hintText: 'write down the name of the medicine.',
+                      hintStyle: Theme.of(context).textTheme.bodyText2,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 6),
+                    ),
+                    onChanged: (_) {
+                      setState(() {});
+                    },
+                  ),
+                ],
               ),
             ),
-            SizedBox(
-              height: 60,
-            ),
-            Text(
-              'Medicine name',
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-            TextFormField(
-              controller: _nameController,
-              maxLength: 20,
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.done,
-              style: Theme.of(context).textTheme.bodyText1,
-              decoration: InputDecoration(
-                hintText: 'write down the name of the medicine.',
-                hintStyle: Theme.of(context).textTheme.bodyText2,
-                contentPadding: EdgeInsets.symmetric(horizontal: 6),
-              ),
-              onChanged: (_) {
-                setState(() {});
-              },
-            ),
-          ],
-        ),
+          );
+        },
       ),
       bottomNavigationBar: SafeArea(
         child: Padding(

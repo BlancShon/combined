@@ -26,7 +26,7 @@
       what you have to do and what you have done.
 
 
-# class Explanations
+# Class Explanations
 
 ## To learn the application and to show the main page of it.
     + MyApp
@@ -101,3 +101,4 @@
 
 ## To limit action frequency. 
     + Debounce
+

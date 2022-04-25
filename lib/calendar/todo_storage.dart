@@ -26,7 +26,7 @@ class DateHistoryStorage {
 
   static Future<bool> putHistoryListItem(String item, DateTime date) {
     List<Map<dynamic, dynamic>>? result =
-        SpUtils.getObjectList(_searchHistoryKey);
+    SpUtils.getObjectList(_searchHistoryKey);
     String dateString = DateFormat('yyyy-MM-dd HH:mm:ss').format(date);
     if (result == null) {
       result = [];
@@ -34,13 +34,24 @@ class DateHistoryStorage {
       return SpUtils.putObjectList(_searchHistoryKey, result);
     }
 
-    result.removeWhere((element) => element['name'] == item);
+    // result.removeWhere((element) => element['name'] == item);
 
     // if (result.length == 10) {
     //   result.removeLast();
     // }
     result.insert(0, {'name': item, 'date': dateString});
     return SpUtils.putObjectList(_searchHistoryKey, result);
+  }
+
+  static Future<bool> removeHistoryListItem(String item, String dateString) {
+    List<Map<dynamic, dynamic>>? result =
+    SpUtils.getObjectList(_searchHistoryKey);
+
+    if (result != null) {
+      result.removeWhere((element) => element['name'] == item && element['date'] == dateString);
+      return SpUtils.putObjectList(_searchHistoryKey, result);
+    }
+    return Future.value(false);
   }
 
   static Future<bool> deleteHistoryList() {

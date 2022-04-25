@@ -6,7 +6,6 @@
       the calendar to immediately know until when the quarantine period is maintained.
     
    
-
 ## 2. Add Event
     + You can set the year, month, and day to immediately add events to that date.
     + The event is immediately added to the calendar.
@@ -26,15 +25,41 @@
       what you have to do and what you have done.
 
 
+# Directory Explanations
+
+
+## android
+    + consist the build file of the andorid application
+
+## assets/images
+    + a direcotory that stores the static image files of the application
+
+## ios
+    + consist the build file of the ios application
+
+## calendar
+    + consist the dart code for android application
+
+
+## services
+    + consist the handler code for the applications
+
+## web
+    + consist the build file of web application
+
+
 # Class Explanations
+
 
 ## To learn the application and to show the main page of it.
     + MyApp
     + MyPage
 
+
 ## To add, delete and update the medicine Log.
     + MedicineRepository
     + MedicineLogRepository
+
 
 ## To go to the main page of New schedule with UI.
     + Homepage
@@ -43,6 +68,7 @@
     + DeleteDataButton
     + MedicinePhoto
     + TileActionButton
+
 
 ## To come up with bottom sheet with adding alarm and medicine function.
     + BottomSheetBody
@@ -55,6 +81,7 @@
     + PickImageBottomSheet
     + BasicPageBodyFormet
 
+
 ## To use flutter hive adapter function
     + HiveStorage
     + HiveStorageBox
@@ -64,9 +91,11 @@
     + MedicineLogAdapter
     + MedicineAlarm
 
+
 ## To go to the main page of calendar.
     + Claendar
     + Event
+
 
 ## To use the service portal function.
     + SpUtils
@@ -74,8 +103,10 @@
     + MessageLookup
     + S
 
+
 ## To localize the app.
     + AppLocalizationDelegate
+
 
 ## To go to the main page of Daily Survey.
     + MySurveylist
@@ -89,6 +120,7 @@
     + ActivieSurveyCountState
     + ActivieSurveyCount
 
+
 ## To use filter and search function.
     + FilteredSurveyState
     + FilteredSurveys
@@ -98,6 +130,7 @@
     + SurveyList
     + SurveySearchState
     + SurveySearch
+
 
 ## To limit action frequency. 
     + Debounce

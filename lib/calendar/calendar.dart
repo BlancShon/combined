@@ -7,6 +7,9 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'action_button.dart';
+import 'expandable_fab.dart';
+
 class Calendar extends StatefulWidget {
   @override
   _CalendarState createState() => _CalendarState();
@@ -16,14 +19,15 @@ class _CalendarState extends State<Calendar> {
   CalendarFormat format = CalendarFormat.month;
   DateTime selectedDay = DateTime.now();
   DateTime focusedDay = DateTime.now();
-  DateTime addDateTime = DateTime.now();
 
-  //recordList: All todolist enents
+  //recordList: All todolist events
   List<Map<String, dynamic>> recordList = List.empty(growable: true);
+
   //showList: 今天或给定一个日期的事件
   List<Map<String, dynamic>> showList = List.empty(growable: true);
 
-  TextEditingController editingController = TextEditingController()
+  TextEditingController editingController = TextEditingController();
+  TextEditingController editingController_2 = TextEditingController()
     ..text = '14';
 
   @override
@@ -220,10 +224,21 @@ class _CalendarState extends State<Calendar> {
           ListView.separated(
             itemBuilder: (context, index) {
               final result = showList[index];
-              return ListTile(
-                leading: Text(DateFormat('yyyy-MM-dd')
-                    .format(DateTime.parse(result['date']))),
-                trailing: Text(result['name']),
+              print('事件：result:' + " " + result.toString());
+              return Dismissible(
+                key: Key('${index}'),
+                child: ListTile(
+                  leading: Text(DateFormat('yyyy-MM-dd')
+                      .format(DateTime.parse(result['date']))),
+                  trailing: Text(result['name']),
+                ),
+                onDismissed: (direction) async {
+                  await DateHistoryStorage.removeHistoryListItem(
+                      result['name'], result['date']);
+                  //刷新数据
+                  recordList = DateHistoryStorage.getHistoryList();
+                  showList = _getListForDay(selectedDay);
+                },
               );
             },
             itemCount: showList.length,
@@ -232,57 +247,23 @@ class _CalendarState extends State<Calendar> {
               return Divider();
             },
           ),
-
-          //add Button
-          Align(
-            alignment: Alignment.bottomRight,
-            child: PopupMenuButton<String>(
-              // padding: const EdgeInsets.all(10.0),
-              icon: Icon(Icons.add),
-              itemBuilder: (context) {
-                return <PopupMenuEntry<String>>[
-                  PopupMenuItem<String>(
-                    value: 'todoItem',
-                    child: Text('Add TO DO Item'),
-                  ),
-                  PopupMenuItem<String>(
-                    value: 'quarantine',
-                    child: Text('Add Quarantine Date'),
-                  ),
-                ];
-              },
-              onSelected: (value) {
-                print('$value');
-                if (value == 'quarantine') {
-                  _addEvent(value);
-                } else if (value == 'todoItem') {
-                  print('add todoitem');
-                }
-              },
+        ],
+      ),
+      floatingActionButton: ExpandableFab(
+        distance: 112.0,
+        children: [
+          ActionButton(
+            onPressed: () => _addEvent("quarantine"),
+            icon: const Icon(
+              Icons.description,
+              color: Colors.white,
             ),
           ),
-
-          Center(
-            child: ElevatedButton.icon(
-              onPressed: () {
-                _showCupertinoDatePicker();
-              },
-              icon: Icon(
-                Icons.add_alert_rounded,
-                size: 20,
-                color: Colors.grey[850],
-              ),
-              label: Text(
-                'Add Event',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.grey[850],
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.blue[400],
-                  onSurface: Colors.pink,
-                  minimumSize: Size(150, 50)),
+          ActionButton(
+            onPressed: () => _showAddEventDialog(),
+            icon: const Icon(
+              Icons.add,
+              color: Colors.white,
             ),
           ),
         ],
@@ -291,7 +272,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   void _addEvent(String value) {
-    print('addEnevt_qq');
+    print('addEvent_qq');
     _showQuarantineDatePicker();
   }
 
@@ -349,7 +330,7 @@ class _CalendarState extends State<Calendar> {
       builder: (context) => AlertDialog(
         title: Text("Add Quarantine Time(确认隔离总天数)"),
         content: TextFormField(
-          controller: editingController,
+          controller: editingController_2,
           // keyboardType: TextInputType.datetime,
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')) //设置只允许输入数字
@@ -367,9 +348,9 @@ class _CalendarState extends State<Calendar> {
               //     editingController.text, addQDateTime);
               print('隔离开始日期 & 隔离总天数');
               print(addQDateTime);
-              print(editingController.text);
+              print(editingController_2.text);
 
-              _processQEvent(addQDateTime, int.parse(editingController.text));
+              _processQEvent(addQDateTime, int.parse(editingController_2.text));
 
               Navigator.pop(context);
               // editingController.clear();
@@ -398,51 +379,19 @@ class _CalendarState extends State<Calendar> {
     showList = _getListForDay(selectedDay);
   }
 
-  void _showCupertinoDatePicker() {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      'Cancel',
-                      style: TextStyle(fontSize: 13),
-                    )),
-                TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Future.delayed(Duration(milliseconds: 200), () {
-                        _showInput();
-                      });
-                    },
-                    child: Text(
-                      'Confirm',
-                      style: TextStyle(fontSize: 13),
-                    )),
-              ],
-            ),
-            Container(
-              height: MediaQuery.of(context).copyWith().size.height / 3,
-              child: CupertinoDatePicker(
-                  mode: CupertinoDatePickerMode.date,
-                  maximumYear: DateTime.now().year + 60,
-                  minimumYear: DateTime.now().year - 60,
-                  onDateTimeChanged: (dateTime) {
-                    print("${dateTime.year}-${dateTime.month}-${dateTime.day}");
-                    addDateTime = dateTime;
-                  }),
-            ),
-          ]);
-        });
+  void _processTodoEvent(DateTime eventDate, String todoEvent) {
+    //处理隔离时间的数据
+    // 1.将数据加入事件list中，并将其添加时间标题
+    String eventName = todoEvent;
+    // 将事件加入数据库中
+    DateHistoryStorage.putHistoryListItem(eventName, eventDate);
+    print('事件：' + eventName + " " + eventDate.toString());
+    //刷新数据
+    recordList = DateHistoryStorage.getHistoryList();
+    showList = _getListForDay(selectedDay);
   }
 
-  void _showInput() {
+  void _showAddEventDialog() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -458,9 +407,11 @@ class _CalendarState extends State<Calendar> {
           TextButton(
             child: Text("Ok"),
             onPressed: () {
-              DateHistoryStorage.putHistoryListItem(
-                  editingController.text, addDateTime);
-
+              if (editingController.text.isEmpty) {
+              } else {
+                _processTodoEvent(
+                    selectedDay, editingController.text.toString());
+              }
               Navigator.pop(context);
               editingController.clear();
               setState(() {});
